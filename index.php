@@ -1,0 +1,30 @@
+<?php include("certificate.php"); ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="root">
+        <div>
+            <center>
+                <img src="./images/logo2.png" alt="logo" width="130px">
+                <h1>Auto Certificate</h1>
+                <form action="certificate.php" method="POST">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Mohammad Suleiman">
+                    <label for="course">Course</label>
+                    <input type="text" name="course" id="course" value="Python Mastery" required>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" required>
+                    <input type="submit" value="Generate">
+                </form>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

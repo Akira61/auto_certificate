@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("images/background.jpg");
+  background-color: #cccccc;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div {
+  width: 400px;
+  height: 560px;
+  background-color: white;
+  margin: 60px auto;
+  border-right: 1px double gray;
+  border-left: 1px double gray;
+  border-bottom: 1px double gray;
+  box-shadow: 1px 1px 10px rgb(80, 128, 80);
+}
+
+div input {
+  display: block;
+  width: 240px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 10px;
+}
+div img {
+  margin-top: 20px;
+}
+div input[type="submit"] {
+  width: 265px;
+  background-color: rgb(80, 128, 80);
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+div input[type="submit"]:hover {
+  background-color: #b3ba8d;
+}
