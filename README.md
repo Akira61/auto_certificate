@@ -3,6 +3,7 @@
 <p align="center">
 <img src="./images/logo.png" width="300" title="logo">
 </p>
+<h2>About Auto Certificate</h2>
 <p>Have you wondered how you get your certificate when you complete an online course?</p>
 <p> Is there a team that writes the certificate for each student after they finish the course?</p>
 <p>Well... if that is the case that will cost a lot and be an overwhelming thing.</p>
