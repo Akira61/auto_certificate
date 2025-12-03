@@ -29,7 +29,7 @@ div input {
 div img {
   margin-top: 20px;
 }
-div input[type="submit"] {
+div button {
   width: 265px;
   background-color: rgb(80, 128, 80);
   color: white;
@@ -38,6 +38,6 @@ div input[type="submit"] {
   cursor: pointer;
 }
 
-div input[type="submit"]:hover {
+div button {
   background-color: #b3ba8d;
 }

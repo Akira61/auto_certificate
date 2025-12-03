@@ -1,29 +1,67 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificate</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="root">
         <div>
             <center>
                 <img src="./images/logo2.png" alt="logo" width="130px">
                 <h1>Auto Certificate</h1>
-                <form action="certificate.php" method="POST">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Mohammad Suleiman">
-                    <label for="course">Course</label>
+                <form id="certForm" onsubmit="return false;">
+                    <label>Name</label>
+                    <input type="text" name="name" id="name" placeholder="Mohammad" required>
+
+                    <label>Course</label>
                     <input type="text" name="course" id="course" value="Python Mastery" required>
-                    <label for="date">Date</label>
+
+                    <label>Date</label>
                     <input type="date" name="date" id="date" required>
-                    <input type="submit" value="Generate">
+
+                    <button id="generateBtn">Generate</button>
+
+                    <p id="message"></p>
                 </form>
             </center>
         </div>
     </div>
+    <script>
+        document.getElementById("generateBtn").addEventListener("click", () => {
+            const form = document.getElementById("certForm");
+            const message = document.getElementById("message");
+
+            const formData = new FormData(form);
+            message.innerHTML = "Generating certificate...";
+
+            fetch("certificate.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        message.style.color = "green";
+                        message.innerHTML = "Certificate generated! Opening...";
+                        window.open(data.file, "_blank");
+                    } else {
+                        message.style.color = "red";
+                        message.textContent = data.message;
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    message.style.color = "red";
+                    message.textContent = "Something went wrong!";
+                });
+        });
+    </script>
+
 </body>
+
 </html>
