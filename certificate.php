@@ -1,70 +1,49 @@
 <?php
-header('Content-Type: application/json');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") :
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validate required fields
-    if (empty($_POST['name']) || empty($_POST['course']) || empty($_POST['date'])) :
-        echo json_encode([
-            "status" => "error",
-            "message" => "All fields are required."
-        ]);
-        exit;
-    endif;
+    if (empty($_POST['name']) || empty($_POST['course']) || empty($_POST['date'])) {
+        die("<center><span style='color:red'>All fields are required. <a href='form.html'>Back</a></span></center>");
+    }
 
-    // Load font and certificate template
     $font = __DIR__ . '/fonts/PlayfairDisplay-Regular.ttf';
     $certification = imagecreatefromjpeg(__DIR__ . '/images/certification_template.jpg');
 
     if (!$certification || !file_exists($font)) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Error loading font or template image."
-        ]);
-        exit;
+        die("Error loading font or template image.");
     }
 
     $color = imagecolorallocate($certification, 0, 0, 0);
-
-    $center_text = function ($text, $size) use ($font, $certification) {
-        $bbox = imagettfbbox($size, 0, $font, $text);
-        $text_width = $bbox[4] - $bbox[0];
-        return (imagesx($certification) / 2) - ($text_width / 2);
+    $shanawaz = imagecolorallocate($certification, 255, 0, 0);
+    $center = function ($text, $size) use ($font, $certification) {
+        $box = imagettfbbox($size, 0, $font, $text);
+        $width = $box[4] - $box[0];
+        return (imagesx($certification) / 2) - ($width / 2);
     };
 
-    // Write the texts
     $name = $_POST['name'];
-    imagettftext($certification, 55, 0, $center_text($name, 55), 650, $color, $font, $name);
+    imagettftext($certification, 40, 0, $center($name, 40), 600, $color, $font, $name);
 
     $course = $_POST['course'];
-    imagettftext($certification, 45, 0, $center_text($course, 45), 810, $color, $font, $course);
+    imagettftext($certification, 36, 0, $center($course, 36), 780, $color, $font, $course);
 
     $date = $_POST['date'];
-    imagettftext($certification, 35, 0, 660, 910, $color, $font, $date);
+    imagettftext($certification, 28, 0, 660, 910, $color, $font, $date);
+
+    $company = "XYZ Training Center";
+    imagettftext($certification, 28, 0, 550, 850, $shanawaz, $font, $company);
 
     $certificate_id = rand(1000, 10000);
-    imagettftext($certification, 35, 0, 340, 1090, $color, $font, '#' . $certificate_id);
+    imagettftext($certification, 35, 0, 340, 1090, $color, $font, "#" . $certificate_id);
 
-    $folder = __DIR__ . "/certifications/";
-    if (!is_dir($folder)) mkdir($folder, 0777, true);
+    $dir = __DIR__ . "/certifications/";
+    if (!is_dir($dir)) mkdir($dir, 0777, true);
 
-    $filepath = $folder . $name . "_" . $certificate_id . ".jpg";
-
-    if (!imagejpeg($certification, $filepath)) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Failed to save the certificate."
-        ]);
-        exit;
-    }
-
+    $file = $dir . $name . "_" . $certificate_id . ".png";
+    imagepng($certification, $file);
     imagedestroy($certification);
 
-    // Return the file path
-    echo json_encode([
-        "status" => "success",
-        "file" => "certifications/" . $name . "_" . $certificate_id . ".jpg"
-    ]);
+    header("Location: certifications/" . $name . "_" . $certificate_id . ".png");
     exit;
-
-endif;
+}
+?>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Certificate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="root">
+        <section class="form-section" id="certificate-form">
+            <div class="form-card">
+
+                <a href="index.html" class="back-btn">← Back to Home</a>
+
+                <center>
+                    <img src="./images/logo2.png" alt="logo" width="90px">
+                    <h2>Auto Certificate</h2>
+
+                    <form id="cert-form" action="certificate.php" method="POST">
+
+                        
+                        <input type="hidden" name="name" id="full_name">
+
+                        
+                        <label for="first_name">First Name</label>
+                        <input
+                            type="text"
+                            id="first_name"
+                            name="first_name"
+                            required
+                            pattern="[A-Za-z]+"
+                            title="Letters only"
+                        >
+
+                        
+                        <label for="last_name">Last Name</label>
+                        <input
+                            type="text"
+                            id="last_name"
+                            name="last_name"
+                            required
+                            pattern="[A-Za-z]+"
+                            title="Letters only"
+                        >
+
+                       
+                        <label for="course">Course</label>
+                        <input
+                            type="text"
+                            id="course"
+                            name="course"
+                            required
+                        >
+
+                        
+                        <label for="date">Date</label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+
+                        <input type="submit" value="Generate">
+                    </form>
+                </center>
+            </div>
+        </section>
+    </div>
+
+    <script>
+
+        document.getElementById('cert-form').addEventListener('submit', function (e) {
+
+            const first = document.getElementById('first_name').value.trim();
+            const last  = document.getElementById('last_name').value.trim();
+            const course = document.getElementById('course').value.trim();
+            const date   = document.getElementById('date').value;
+
+            const lettersOnly = /^[A-Za-z]+$/;
+            const course_regex = /^[a-zA-Z0-9 ]+$/;
+            if (!lettersOnly.test(first) || !lettersOnly.test(last)) {
+                alert('First Name and Last Name must contain letters only (A–Z).');
+                e.preventDefault();
+                return;
+            }
+            if(!course_regex.test(course)) {
+                alert('Course must contain letter and numbers only');
+                e.preventDefault();
+                return;
+            }
+
+            
+            document.getElementById('full_name').value = first + ' ' + last;
+        });
+
+    </script>
+</body>
+</html>

@@ -1,43 +1,158 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-image: url("images/background.jpg");
-  background-color: #cccccc;
-  /* Center and scale the image nicely */
+  background-color: #f3f4f6;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0;
 }
 
-div {
+.root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.hero {
+  max-width: 700px;
+  width: 90%;
+  text-align: center;
+  padding: 28px 20px;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-title {
+  font-size: 32px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.hero-text {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: rgb(80, 128, 80);
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.hero-button:hover {
+  background-color: #4f7f4f;
+  transform: scale(1.03);
+}
+
+.form-section {
+  padding: 40px 16px;
+  margin-top: 20px;
+}
+
+.form-card {
   width: 400px;
-  height: 560px;
   background-color: white;
-  margin: 60px auto;
+  margin: 40px auto;
   border-right: 1px double gray;
   border-left: 1px double gray;
   border-bottom: 1px double gray;
-  box-shadow: 1px 1px 10px rgb(80, 128, 80);
+  box-shadow: 1px 1px 10px rgba(80, 128, 80, 0.4);
+  text-align: center;
+  padding: 24px 20px 28px 20px;
+  border-radius: 6px;
 }
 
-div input {
+.form-card h2 {
+  margin-top: 12px;
+  margin-bottom: 18px;
+}
+
+.form-card img {
+  margin-bottom: 6px;
+}
+
+.form-card label {
+  display: block;
+  text-align: left;
+  width: 265px;
+  margin: 12px auto 4px auto;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-card input[type="text"],
+.form-card input[type="date"] {
   display: block;
   width: 240px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin: 5px auto 12px auto;
   padding: 10px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s;
 }
-div img {
-  margin-top: 20px;
+
+.form-card input[type="text"]:focus,
+.form-card input[type="date"]:focus {
+  border-color: rgb(80, 128, 80);
+  outline: none;
+  box-shadow: 0 0 4px rgba(80, 128, 80, 0.4);
 }
-div button {
+
+.form-card input[type="submit"] {
   width: 265px;
   background-color: rgb(80, 128, 80);
   color: white;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  transition: 0.2s;
 }
 
-div button {
-  background-color: #b3ba8d;
+.form-card input[type="submit"]:hover {
+  background-color: #4f7f4f;
+  transform: scale(1.03);
+}
+
+@media (max-width: 480px) {
+  .hero {
+    width: 90%;
+    padding: 20px;
+  }
+  .form-card {
+    width: 95%;
+  }
+}
+.back-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 260px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  color: rgb(80, 128, 80);
 }
